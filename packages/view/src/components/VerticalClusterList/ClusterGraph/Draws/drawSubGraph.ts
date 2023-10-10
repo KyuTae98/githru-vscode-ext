@@ -1,15 +1,18 @@
 import * as d3 from "d3";
 import type { RefObject } from "react";
+import classNames from "classnames/bind";
 
 import type { ClusterGraphElement } from "../ClusterGraph.type";
 import { getStartYEndY } from "../ClusterGraph.util";
 import { GRAPH_WIDTH } from "../ClusterGraph.const";
+import styles from "../ClusterGraph.module.scss";
 
+const cx = classNames.bind(styles);
 // create tootip (HTML)
 const tooltip = d3
   .select("body")
   .append("div")
-  .attr("class", "tooltip")
+  .attr("class", cx("tooltip"))
   .style("position", "absolute")
   .style("z-index", "10")
   .style("visibility", "hidden")
@@ -53,7 +56,7 @@ export const drawSubGraph = (
     .selectAll(".circle-group")
     .data(allCirclePositions)
     .join("circle")
-    .attr("class", "circle-group")
+    .attr("class", cx("circle-group"))
     .attr("cx", GRAPH_WIDTH / 2 + 2)
     .attr("cy", (d) => d.y)
     .attr("r", circleRadius)

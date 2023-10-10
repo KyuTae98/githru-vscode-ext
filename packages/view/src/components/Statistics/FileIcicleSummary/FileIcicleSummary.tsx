@@ -1,3 +1,4 @@
+import classNames from "classnames/bind";
 import * as d3 from "d3";
 import type { HierarchyRectangularNode } from "d3";
 import type { RefObject } from "react";
@@ -18,8 +19,9 @@ import {
   OPACITY_CODE,
 } from "./FileIcicleSummary.const";
 
-import "./FileIcicleSummary.scss";
+import styles from "./FileIcicleSummary.module.scss";
 
+const cx = classNames.bind(styles);
 const partition = (data: FileChangesNode) => {
   const root = d3
     .hierarchy(data)
@@ -136,7 +138,7 @@ const FileIcicleSummary = () => {
   }
 
   return (
-    <div className="file-icicle-summary">
+    <div className={cx("file-icicle-summary")}>
       <svg ref={$summary} />
     </div>
   );

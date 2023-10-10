@@ -1,5 +1,9 @@
-import type { SVGElementSelection } from "../ClusterGraph.type";
+import classNames from "classnames/bind";
 
+import type { SVGElementSelection } from "../ClusterGraph.type";
+import styles from "../ClusterGraph.module.scss"
+
+const cx = classNames.bind(styles);
 export const drawClusterBox = (
   container: SVGElementSelection<SVGGElement>,
   graphWidth: number,
@@ -7,7 +11,7 @@ export const drawClusterBox = (
 ) => {
   container
     .append("rect")
-    .attr("class", "cluster-graph-container__box")
+    .attr("class", cx("cluster-graph-container__box"))
     .attr("width", graphWidth)
     .attr("height", clusterHeight);
 };

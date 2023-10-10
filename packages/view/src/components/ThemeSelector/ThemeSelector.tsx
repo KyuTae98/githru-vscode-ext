@@ -1,4 +1,4 @@
-import "./ThemeSelector.scss";
+import classNames from "classnames/bind";
 import { useCallback, useEffect, useState } from "react";
 
 import { debounce } from "utils";
@@ -6,6 +6,9 @@ import { setPrimaryColor } from "services";
 
 import { PRIMARY_COLOR_VARIABLE_NAME } from "../../constants/constants";
 
+import styles from "./ThemeSelector.module.scss";
+
+const cx = classNames.bind(styles);
 const ThemeSelector = () => {
   const [color, setColor] = useState<string>(window.primaryColor);
 
@@ -24,7 +27,7 @@ const ThemeSelector = () => {
   );
 
   return (
-    <div className="theme-selector">
+    <div className={cx("theme-selector")}>
       <input
         type="color"
         value={color}

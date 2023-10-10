@@ -1,8 +1,11 @@
 import type { RefObject } from "react";
 import * as d3 from "d3";
+import classNames from "classnames/bind";
 
 import type { ClusterGraphElement, SVGMargin } from "../ClusterGraph.type";
+import styles from "../ClusterGraph.module.scss";
 
+const cx = classNames.bind(styles);
 export const drawTotalLine = (
   svgRef: RefObject<SVGSVGElement>,
   data: ClusterGraphElement[],
@@ -27,7 +30,7 @@ export const drawTotalLine = (
     .selectAll(".cluster-graph__total-line")
     .data(lineData)
     .join("line")
-    .attr("class", "cluster-graph__total-line")
+    .attr("class", cx("cluster-graph__total-line"))
     .attr("x1", svgMargin.left + graphWidth / 2)
     .attr("y1", (d) => d.start)
     .attr("x2", svgMargin.left + graphWidth / 2)

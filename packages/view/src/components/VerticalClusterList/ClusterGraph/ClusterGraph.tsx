@@ -1,11 +1,13 @@
+import classNames from "classnames/bind";
+
 import { useGlobalData } from "hooks";
 
 import { getGraphHeight, getClusterSizes, getSelectedIndex } from "./ClusterGraph.util";
 import { DETAIL_HEIGHT, SVG_WIDTH } from "./ClusterGraph.const";
 import { useHandleClusterGraph } from "./ClusterGraph.hook";
+import styles from "./ClusterGraph.module.scss";
 
-import "./ClusterGraph.scss";
-
+const cx = classNames.bind(styles);
 const ClusterGraph = () => {
   const { filteredData: data, selectedData, setSelectedData } = useGlobalData();
   const clusterSizes = getClusterSizes(data);
@@ -21,7 +23,7 @@ const ClusterGraph = () => {
 
   return (
     <svg
-      className="cluster-graph"
+      className={cx("cluster-graph")}
       ref={svgRef}
       width={SVG_WIDTH}
       height={graphHeight}

@@ -89,7 +89,7 @@ const AuthorBarChart = () => {
         .html(
           `<p class=cx{("name")}>${d.name}</p>
               <p>${metric}: 
-                <span class="selected">
+                <span class={cx("selected")}>
                   ${d[metric].toLocaleString()}
                 </span> 
                 / ${totalMetricValues.toLocaleString()} 

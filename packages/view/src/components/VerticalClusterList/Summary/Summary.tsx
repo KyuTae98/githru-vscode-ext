@@ -1,10 +1,10 @@
 import { useRef, useEffect } from "react";
+import classNames from "classnames/bind";
 
 import type { ClusterNode } from "types";
 import { Detail } from "components";
 import { useGlobalData } from "hooks";
 
-import "./Summary.scss";
 import { Author } from "../../@common/Author";
 import { selectedDataUpdater } from "../VerticalClusterList.util";
 
@@ -12,7 +12,9 @@ import { usePreLoadAuthorImg } from "./Summary.hook";
 import { getInitData, getClusterIds, getClusterById } from "./Summary.util";
 import { Content } from "./Content";
 import type { Cluster } from "./Summary.type";
+import styles from "./Summary.module.scss";
 
+const cx = classNames.bind(styles);
 const Summary = () => {
   const { filteredData: data, selectedData, setSelectedData } = useGlobalData();
   const clusters = getInitData(data);
@@ -32,21 +34,21 @@ const Summary = () => {
   }, [selectedData]);
 
   return (
-    <div className="cluster-summary__container">
+    <div className={cx("cluster-summary__container")}>
       {clusters.map((cluster: Cluster) => {
         return (
           <div
             role="presentation"
-            className="cluster-summary__cluster"
+            className={cx("cluster-summary__cluster")}
             key={cluster.clusterId}
           >
             <button
               type="button"
-              className="toggle-contents-button"
+              className={cx("toggle-contents-button")}
               onClick={onClickClusterSummary(cluster.clusterId)}
             >
-              <div className="toggle-contents-container">
-                <div className="name-box">
+              <div className={cx("toggle-contents-container")}>
+                <div className={cx("name-box")}>
                   {authSrcMap &&
                     cluster.summary.authorNames.map((authorArray: string[]) => {
                       return authorArray.map((authorName: string) => (
@@ -67,7 +69,7 @@ const Summary = () => {
             </button>
             {selectedClusterId.includes(cluster.clusterId) && (
               <div
-                className="detail__container"
+                className={cx("detail__container")}
                 ref={detailRef}
               >
                 <Detail
