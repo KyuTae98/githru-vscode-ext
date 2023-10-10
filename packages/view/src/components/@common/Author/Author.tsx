@@ -1,10 +1,14 @@
-import type { AuthorInfo } from "types";
-import "./Author.scss";
+import classNames from "classnames/bind";
 
+import type { AuthorInfo } from "types";
+
+import styles from "./Author.module.scss";
+
+const cx = classNames.bind(styles);
 const Author = ({ name, src }: AuthorInfo) => {
   return (
     <div
-      className="author"
+      className={cx("author")}
       data-tooltip-text={name}
     >
       <img

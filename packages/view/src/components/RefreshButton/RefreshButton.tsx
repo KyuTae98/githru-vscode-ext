@@ -1,13 +1,15 @@
 import "reflect-metadata";
 import cn from "classnames";
+import classNames from "classnames/bind";
 import { FiRefreshCcw } from "react-icons/fi";
 
 import { throttle } from "utils";
 import { useGlobalData } from "hooks";
-
-import "./RefreshButton.scss";
 import { sendRefreshDataCommand } from "services";
 
+import styles from "./RefreshButton.module.scss";
+
+const cx = classNames.bind(styles);
 const RefreshButton = () => {
   const { loading, setLoading, selectedBranch } = useGlobalData();
 
@@ -19,11 +21,11 @@ const RefreshButton = () => {
   return (
     <button
       type="button"
-      className={cn("refresh-button")}
+      className={cx(cn("refresh-button"))}
       onClick={refreshHandler}
     >
       <FiRefreshCcw
-        className={cn("refresh-button-icon", { "refresh-button-icon--loading": loading })}
+        className={cx(cn("refresh-button-icon"), cx({ "refresh-button-icon--loading": loading }))}
         stroke="white"
       />
     </button>
